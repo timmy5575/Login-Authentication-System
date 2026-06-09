@@ -13,14 +13,28 @@ app.get("/", (req, res) => {
 
 // Login route
 app.post("/login", (req, res) => {
-  console.log("Request body:", req.body);
+  const { username, password } = req.body;
 
-  res.json({
-    success: true,
-    message: "Login works!",
+  console.log("Received:", username, password);
+
+  // Hardcoded credentials
+  if (username === "admin" && password === "123456") {
+    return res.status(200).json({
+      success: true,
+      message: "Login Successful!",
+    });
+  }
+
+  // Wrong credentials
+  return res.status(401).json({
+    success: false,
+    message: " Invalid Username or Password",
   });
 });
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+// Start server
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

@@ -46,13 +46,13 @@ const handleSubmit = async (e) => {
   if (!validate()) return;
 
   try {
-   const response = await axios.post(
-  "https://two20404049csc426.onrender.com/",
-  {
-    username: formData.username,
-    password: formData.password,
-  }
-);
+    const response = await axios.post(
+      "https://two20404049csc426.onrender.com/",
+      {
+        username: formData.username,
+        password: formData.password,
+      }
+    );
 
     setMessageType("success");
     setMessage(response.data.message);
@@ -62,21 +62,11 @@ const handleSubmit = async (e) => {
     if (error.response) {
       setMessage(error.response.data.message);
     } else {
-      setMessage("Server error.");
+      setMessage("Server error. Please try again.");
     }
   }
+
 };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-
-//     if (!validate()) return;
-
-//     // Backend API call will go here later
-
-//     setMessageType("success");
-//     setMessage("Validation successful. Ready to authenticate.");
-//   };
 
   const handleReset = () => {
     setFormData({
