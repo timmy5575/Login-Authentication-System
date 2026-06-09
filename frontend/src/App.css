@@ -1,0 +1,372 @@
+/* ===========================
+   GLOBAL
+=========================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+
+  font-family: "Segoe UI", sans-serif;
+
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0f172a,
+      #1d4ed8,
+      #2563eb,
+      #3b82f6
+    );
+
+  background-size: 400% 400%;
+
+  animation: gradientMove 12s ease infinite;
+
+}
+
+@keyframes gradientMove {
+
+  0% {
+    background-position: left;
+  }
+
+  50% {
+    background-position: right;
+  }
+
+  100% {
+    background-position: left;
+  }
+
+}
+
+/* ===========================
+   CENTER
+=========================== */
+
+.container {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  min-height: 100vh;
+
+  padding: 20px;
+
+}
+
+/* ===========================
+   LOGIN CARD
+=========================== */
+
+.login-card {
+
+  width: 430px;
+
+  max-width: 95%;
+
+  padding: 40px;
+
+  border-radius: 22px;
+
+  backdrop-filter: blur(18px);
+
+  background: rgba(255,255,255,.12);
+
+  border: 1px solid rgba(255,255,255,.2);
+
+  box-shadow:
+
+    0 10px 35px rgba(0,0,0,.35);
+
+  animation: fadeUp .6s ease;
+
+}
+
+@keyframes fadeUp {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(35px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+  }
+
+}
+
+.login-card h2 {
+
+  text-align: center;
+
+  color: white;
+
+  margin-bottom: 30px;
+
+  font-size: 34px;
+
+}
+
+/* ===========================
+   INPUTS
+=========================== */
+
+.input-group {
+
+  display: flex;
+
+  flex-direction: column;
+
+  margin-bottom: 18px;
+
+}
+
+.input-group label {
+
+  color: white;
+
+  margin-bottom: 8px;
+
+  font-weight: 600;
+
+}
+
+.input-group input {
+
+  padding: 15px;
+
+  border-radius: 12px;
+
+  border: none;
+
+  outline: none;
+
+  font-size: 15px;
+
+  transition: .3s;
+
+}
+
+.input-group input:focus {
+
+  transform: scale(1.02);
+
+  box-shadow:
+
+    0 0 10px rgba(255,255,255,.5);
+
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+.buttons {
+
+  display: flex;
+
+  gap: 15px;
+
+  margin-top: 20px;
+
+}
+
+button {
+
+  flex: 1;
+
+  padding: 15px;
+
+  border-radius: 12px;
+
+  border: none;
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  transition: .3s;
+
+}
+
+button:hover {
+
+  transform:
+
+    translateY(-3px);
+
+}
+
+button[type="submit"] {
+
+  background: #16a34a;
+
+  color: white;
+
+}
+
+button[type="submit"]:hover {
+
+  background: #15803d;
+
+}
+
+.reset {
+
+  background: #dc2626;
+
+  color: white;
+
+}
+
+.reset:hover {
+
+  background: #b91c1c;
+
+}
+
+/* ===========================
+   MESSAGE
+=========================== */
+
+.message {
+
+  padding: 12px;
+
+  margin-bottom: 20px;
+
+  border-radius: 10px;
+
+  text-align: center;
+
+  font-weight: bold;
+
+}
+
+.success {
+
+  background: rgba(22,163,74,.2);
+
+  color: #dcfce7;
+
+}
+
+.error {
+
+  background: rgba(220,38,38,.2);
+
+  color: #fee2e2;
+
+}
+
+/* ===========================
+   FLOATING DEMO
+=========================== */
+
+.floating-card {
+
+  position: fixed;
+
+  right: 25px;
+
+  bottom: 25px;
+
+  width: 220px;
+
+  padding: 18px;
+
+  border-radius: 18px;
+
+  backdrop-filter: blur(18px);
+
+  background: rgba(0,0,0,.55);
+
+  color: white;
+
+  box-shadow:
+
+    0 8px 25px rgba(0,0,0,.3);
+
+  animation:
+
+    pulse 2s infinite;
+
+}
+
+.floating-card h4 {
+
+  margin-bottom: 10px;
+
+}
+
+.floating-card p {
+
+  margin-top: 8px;
+
+}
+
+@keyframes pulse {
+
+  0% {
+
+    transform: scale(1);
+
+  }
+
+  50% {
+
+    transform: scale(1.02);
+
+  }
+
+  100% {
+
+    transform: scale(1);
+
+  }
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:700px){
+
+  .buttons{
+
+    flex-direction:column;
+
+  }
+
+  .floating-card{
+
+    width:170px;
+
+    font-size:13px;
+
+    right:10px;
+
+    bottom:10px;
+
+  }
+
+}

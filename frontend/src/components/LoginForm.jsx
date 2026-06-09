@@ -1,0 +1,161 @@
+import { useState } from "react";
+import axios from "axios";
+
+function LoginForm() {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const validate = () => {
+    if (!formData.username.trim()) {
+      setMessageType("error");
+      setMessage("Username is required.");
+      return false;
+    }
+
+    if (!formData.password.trim()) {
+      setMessageType("error");
+      setMessage("Password is required.");
+      return false;
+    }
+
+    if (formData.password.length < 6) {
+      setMessageType("error");
+      setMessage("Password must be at least 6 characters.");
+      return false;
+    }
+
+    return true;
+  };
+
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!validate()) return;
+
+  try {
+   const response = await axios.post(
+  "http://localhost:5000/login",
+  {
+    username: formData.username,
+    password: formData.password,
+  }
+);
+
+    setMessageType("success");
+    setMessage(response.data.message);
+  } catch (error) {
+    setMessageType("error");
+
+    if (error.response) {
+      setMessage(error.response.data.message);
+    } else {
+      setMessage("Server error.");
+    }
+  }
+};
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+
+//     if (!validate()) return;
+
+//     // Backend API call will go here later
+
+//     setMessageType("success");
+//     setMessage("Validation successful. Ready to authenticate.");
+//   };
+
+  const handleReset = () => {
+    setFormData({
+      username: "",
+      password: "",
+    });
+
+    setMessage("");
+    setMessageType("");
+  };
+
+ return (
+  <>
+    <div className="login-card">
+      <h2>Login Authentication</h2>
+
+      {message && (
+        <div className={`message ${messageType}`}>
+          {message}
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit}>
+
+        <div className="input-group">
+          <label>Username</label>
+
+          <input
+            type="text"
+            name="username"
+            placeholder="Enter Username"
+            value={formData.username}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="input-group">
+          <label>Password</label>
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="buttons">
+          <button type="submit">
+            Login
+          </button>
+
+          <button
+            type="button"
+            className="reset"
+            onClick={handleReset}
+          >
+            Reset
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+   
+    <div className="floating-card">
+      <h4> Login</h4>
+
+      <p>
+        Username: <strong>admin</strong>
+      </p>
+
+      <p>
+        Password: <strong>123456</strong>
+      </p>
+    </div>
+  </>
+);
+}
+
+export default LoginForm;
