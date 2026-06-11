@@ -149,6 +149,6 @@ Frontend runs on `http://localhost:5173`
 
 - **Name:** Timmy
 - **Matric No:** 220404049
-- **Course:** CSC 426 — System Security
+- **Course:** CSC 426 
 - **Institution:** Adekunle Ajasin University, Akungba-Akoko
 - **Session:** 2024/2025
